@@ -1,23 +1,40 @@
-import logo from './logo.svg';
+import React, { useState } from 'react';
 import './App.css';
 
 function App() {
+  const [mensaje, setMensaje] = useState('');
+  const [cargando, setCargando] = useState(false);
+
+  const ejecutarETL = async () => {
+    setCargando(true);
+    setMensaje('Ejecutando ETL...');
+
+    try {
+      const response = await fetch('http://localhost:3001/ejecutar-etl', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+      });
+      const data = await response.json();
+      setMensaje(data.message || '✅ ETL ejecutado con éxito');
+    } catch (error) {
+      setMensaje(`❌ Error: ${error.message}`);
+    } finally {
+      setCargando(false);
+    }
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+    <div className="app">
+      <h1>Ejecutor de ETL Pentaho</h1>
+      <div className="controles">
+        <button 
+          onClick={ejecutarETL}
+          disabled={cargando}
         >
-          Learn React
-        </a>
-      </header>
+          {cargando ? 'Ejecutando...' : 'Ejecutar ETL'}
+        </button>
+      </div>
+      {mensaje && <div className="mensaje">{mensaje}</div>}
     </div>
   );
 }
