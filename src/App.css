@@ -1,47 +1,107 @@
 .app {
-  max-width: 600px;
-  margin: 2rem auto;
-  padding: 1rem;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
   font-family: Arial, sans-serif;
+}
+
+h1 {
+  color: #2c3e50;
+  text-align: center;
 }
 
 .controles {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
-  margin-bottom: 1rem;
+  gap: 20px;
+  margin: 30px 0;
 }
 
-.controles div {
+.selector {
   display: flex;
-  align-items: center;
-  gap: 0.5rem;
+  flex-direction: column;
+  gap: 8px;
 }
 
-input[type="date"] {
-  padding: 0.5rem;
+.selector label {
+  font-weight: bold;
+  color: #34495e;
 }
 
-button {
-  padding: 0.75rem;
-  background: #4CAF50;
+.selector select {
+  padding: 10px;
+  border-radius: 4px;
+  border: 1px solid #bdc3c7;
+  font-size: 16px;
+}
+
+.boton-ejecutar {
+  background-color: #3498db;
   color: white;
   border: none;
+  padding: 12px 20px;
+  border-radius: 4px;
   cursor: pointer;
-  font-size: 1rem;
+  font-size: 16px;
+  transition: background-color 0.3s;
 }
 
-button:disabled {
-  background: #cccccc;
+.boton-ejecutar:hover {
+  background-color: #2980b9;
+}
+
+.boton-ejecutar:disabled {
+  background-color: #95a5a6;
+  cursor: not-allowed;
 }
 
 .mensaje {
-  padding: 1rem;
+  padding: 15px;
   border-radius: 4px;
-  margin-top: 1rem;
+  margin-top: 20px;
+  text-align: center;
 }
 
-.mensaje:not(:empty) {
-  background: #f0f0f0;
-  border-left: 4px solid #4CAF50;
+.mensaje.exito {
+  background-color: #d5f5e3;
+  color: #27ae60;
+  border: 1px solid #2ecc71;
+}
+
+.mensaje.error {
+  background-color: #fadbd8;
+  color: #e74c3c;
+  border: 1px solid #e74c3c;
+}
+
+/* Agrega esto al final de tu archivo CSS existente */
+
+.fechas {
+  display: flex;
+  gap: 20px;
+  margin: 15px 0;
+}
+
+.fecha-input {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.fecha-input label {
+  font-weight: bold;
+  color: #34495e;
+}
+
+.fecha-input input {
+  padding: 8px;
+  border-radius: 4px;
+  border: 1px solid #bdc3c7;
+  font-size: 14px;
+  width: 150px;
+}
+
+/* Mejora el mensaje de error para múltiples líneas */
+.mensaje {
+  white-space: pre-line;
 }
